@@ -1,0 +1,23 @@
+% --------- FACTS ---------
+fact(a).
+fact(b).
+
+% --------- RULES ---------
+% A fact is true if it is known
+prove(X) :- fact(X).
+
+% A fact is true if there is a rule with conditions that can be proven
+prove(X) :-
+    rule(X, Conditions),
+    prove_all(Conditions).
+
+% Rules
+rule(c, [a, b]).     % if a and b then c
+rule(d, [c]).        % if c then d
+rule(e, [b, d]).     % if b and d then e
+
+% --------- HELPER TO CHECK ALL CONDITIONS ---------
+prove_all([]).
+prove_all([H|T]) :-
+    prove(H),
+    prove_all(T).
