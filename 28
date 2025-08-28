@@ -1,0 +1,39 @@
+% --------- FACTS: Symptoms for diseases ---------
+disease(flu) :-
+    symptom(fever),
+    symptom(cough),
+    symptom(sore_throat),
+    symptom(headache).
+
+disease(cold) :-
+    symptom(runny_nose),
+    symptom(sneezing),
+    symptom(sore_throat).
+
+disease(malaria) :-
+    symptom(fever),
+    symptom(chills),
+    symptom(sweating),
+    symptom(headache).
+
+disease(diabetes) :-
+    symptom(frequent_urination),
+    symptom(increased_thirst),
+    symptom(weight_loss).
+
+disease(hypertension) :-
+    symptom(headache),
+    symptom(dizziness),
+    symptom(blurred_vision).
+
+% --------- ASK USER FOR SYMPTOMS ---------
+ask(Question) :-
+    write('Do you have '), write(Question), write('? (yes/no): '),
+    read(Response),
+    (Response == yes -> assert(symptom(Question)) ; fail).
+
+% --------- DIAGNOSE ---------
+diagnose :-
+    (   disease(D) ->
+        write('You may be suffering from: '), write(D), nl
+    ;   write('Sorry, unable to diagnose with given symptoms.'), nl).
