@@ -1,0 +1,14 @@
+% -------------------------
+% Pattern Matching in Prolog
+% -------------------------
+
+% Match empty pattern with empty list
+match([], []).
+
+% Match variable (_) with anything
+match([_|PTail], [_|LTail]) :-
+    match(PTail, LTail).
+
+% Match exact element
+match([X|PTail], [X|LTail]) :-
+    match(PTail, LTail).
