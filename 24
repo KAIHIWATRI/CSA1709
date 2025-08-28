@@ -1,0 +1,17 @@
+% ---------- FACTS ----------
+% disease_diet(Disease, SuggestedDiet).
+
+disease_diet(diabetes, 'Low sugar, high fiber diet with whole grains, vegetables, and lean protein.').
+disease_diet(hypertension, 'Low salt diet with fruits, vegetables, whole grains, and low-fat dairy.').
+disease_diet(obesity, 'Calorie-controlled diet with more vegetables, fruits, and lean proteins, avoid junk food.').
+disease_diet(anemia, 'Iron-rich foods like spinach, red meat, beans, and vitamin C rich fruits.').
+disease_diet(kidney_disease, 'Low protein, low sodium, avoid potassium-rich foods, consult a nephrologist.').
+disease_diet(heart_disease, 'Low cholesterol diet with oats, nuts, olive oil, and avoid fried foods.').
+disease_diet(ulcer, 'Avoid spicy, oily foods. Eat bananas, milk, boiled vegetables.').
+disease_diet(gout, 'Avoid red meat, alcohol, seafood. Eat cherries, low-fat dairy, and lots of water.').
+
+% ---------- RULE ----------
+diet_suggestion(Disease) :-
+    disease_diet(Disease, Diet),
+    write('For '), write(Disease), write(', the suggested diet is:'), nl,
+    write(Diet), nl.
