@@ -1,0 +1,22 @@
+% teaches(Teacher, SubjectCode).
+% enrolled(Student, SubjectCode).
+
+teaches(dr_smith, cs101).
+teaches(dr_jones, cs102).
+teaches(dr_meera, ma201).
+
+enrolled(john, cs101).
+enrolled(alice, cs101).
+enrolled(ravi, cs102).
+enrolled(maya, ma201).
+enrolled(karthik, cs101). 
+% Find the teacher of a student
+teacher_of(Student, Teacher) :-
+    enrolled(Student, SubCode),
+    teaches(Teacher, SubCode).
+
+% Find classmates (students enrolled in the same subject)
+classmate(S1, S2) :-
+    enrolled(S1, SubCode),
+    enrolled(S2, SubCode),
+    S1 \= S2.
