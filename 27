@@ -1,0 +1,54 @@
+% ---------- GRAPH ----------
+% edge(Node, Neighbor, Cost).
+edge(a, b, 1).
+edge(a, c, 3).
+edge(b, d, 3).
+edge(b, e, 1).
+edge(c, f, 5).
+edge(c, g, 2).
+edge(e, h, 2).
+
+% ---------- HEURISTIC (h-values) ----------
+% h(Node, Value).
+h(a, 7).
+h(b, 6).
+h(c, 5).
+h(d, 4).
+h(e, 3).
+h(f, 6).
+h(g, 2).
+h(h, 1).
+h(goal, 0).
+
+% ---------- BEST FIRST SEARCH ----------
+bestfs(Start, Goal, Path) :-
+    bestfs_helper([[Start]], Goal, RevPath),
+    reverse(RevPath, Path).
+
+% If the first path in the queue leads to the goal, stop
+bestfs_helper([[Goal|RestPath]|_], Goal, [Goal|RestPath]).
+
+% Otherwise, expand the first path
+bestfs_helper([Path|Queue], Goal, FinalPath) :-
+    Path = [Current|_],
+    findall([Next,Current|Path],
+            (edge(Current, Next, _), \+ member(Next, Path)),
+            NewPaths),
+    add_to_queue(NewPaths, Queue, UpdatedQueue),
+    bestfs_helper(UpdatedQueue, Goal, FinalPath).
+
+% ---------- PRIORITY QUEUE ----------
+% Insert new paths sorted by heuristic value
+add_to_queue(Paths, Queue, SortedQueue) :-
+    append(Paths, Queue, Combined),
+    sort_queue(Combined, SortedQueue).
+
+% Sort paths based on heuristic of their head node
+sort_queue(Paths, Sorted) :-
+    map_list_to_pairs(path_cost, Paths, Pairs),
+    keysort(Pairs, SortedPairs),
+    pairs_values(SortedPairs, Sorted).
+
+% Heuristic cost of a path is the h-value of its current node
+path_cost([Node|_], H) :-
+    h(Node, H).
