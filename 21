@@ -1,0 +1,16 @@
+% hanoi(N, Source, Target, Auxiliary)
+% Move N disks from Source to Target using Auxiliary.
+
+hanoi(0, _, _, _) :- !.  % Base case: No disks, no moves.
+
+hanoi(N, Source, Target, Auxiliary) :-
+    N > 0,
+    M is N - 1,
+    hanoi(M, Source, Auxiliary, Target),      % Move N-1 disks to Auxiliary
+    move(Source, Target),                     % Move largest disk to Target
+    hanoi(M, Auxiliary, Target, Source).      % Move N-1 disks from Auxiliary to Target
+
+% Just printing the move
+move(Source, Target) :-
+    write('Move disk from '), write(Source),
+    write(' to '), write(Target), nl.
