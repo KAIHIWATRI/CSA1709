@@ -1,0 +1,33 @@
+% --------- INITIAL FACTS ---------
+fact(a).
+fact(b).
+
+% --------- RULES ---------
+% If a and b are true then c is true
+rule(c, [a, b]).
+
+% If c is true then d is true
+rule(d, [c]).
+
+% If b and d are true then e is true
+rule(e, [b, d]).
+
+% --------- FORWARD CHAINING ENGINE ---------
+forward_chain :-
+    new_fact(F),
+    \+ fact(F),                 % ensure fact is not already known
+    assert(fact(F)),            % add new fact to the KB
+    write('Derived: '), write(F), nl,
+    forward_chain.              % continue chaining
+forward_chain.
+
+% Check if a rule’s conditions are satisfied
+new_fact(Fact) :-
+    rule(Fact, Conditions),
+    all_true(Conditions).
+
+% Verify all conditions are facts
+all_true([]).
+all_true([H|T]) :-
+    fact(H),
+    all_true(T).
