@@ -1,0 +1,36 @@
+<!-- Title Tag -->
+<title>Demonstrating Basic HTML Tags in WordPress</title>
+
+<!-- Main Heading -->
+<h1>Welcome to My HTML Tags Demo Blog</h1>
+
+<!-- Paragraph -->
+<p>This blog demonstrates how different HTML tags work when used inside WordPress. These tags are essential for structuring webpages and adding meaning to the content.</p>
+
+<!-- Subheading -->
+<h2>1. Paragraph and Heading Tags</h2>
+<p>The <code>&lt;h1&gt;</code> to <code>&lt;h6&gt;</code> tags define headings, and the <code>&lt;p&gt;</code> tag defines paragraphs.</p>
+<h3>This is an H3 heading</h3>
+<p>This is a normal paragraph written using the <code>&lt;p&gt;</code> tag.</p>
+
+<!-- Anchor Tag -->
+<h2>2. Anchor Tag (Hyperlink)</h2>
+<p>You can create clickable links using the <code>&lt;a&gt;</code> tag.</p>
+<p>Example: Visit 
+   <a href="https://www.wordpress.org" target="_blank">WordPress Official Website</a>.
+</p>
+
+<!-- Text Formatting -->
+<h2>3. Text Formatting Tags</h2>
+<p><b>This text is bold.</b></p>
+<p><i>This text is italic.</i></p>
+<p><u>This text is underlined.</u></p>
+
+<!-- Image Tag -->
+<h2>4. Image Tag</h2>
+<p>You can add images using the <code>&lt;img&gt;</code> tag.</p>
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9a/WordPress_blue_logo.svg" width="120" alt="WordPress Logo">
+
+<!-- Closing -->
+<h2>Conclusion</h2>
+<p>We successfully demonstrated the usage of <code>&lt;title&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;h1&gt;</code> to <code>&lt;h3&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;b&gt;</code>, <code>&lt;i&gt;</code>, <code>&lt;u&gt;</code>, and <code>&lt;img&gt;</code> tags inside a WordPress blog post.</p>
