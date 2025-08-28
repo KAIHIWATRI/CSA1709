@@ -1,0 +1,33 @@
+% Initial state: Monkey at door, on floor, box at window, monkey doesn't have banana
+initial_state(state(door, onfloor, window, hasnot)).
+
+% Goal state: Monkey has banana
+goal_state(state(_, _, _, has)).
+
+% --------- ACTION RULES ---------
+% 1. Monkey walks from one place to another
+move(state(Pos, onfloor, BoxPos, Has),
+     walk(NewPos, Pos),
+     state(NewPos, onfloor, BoxPos, Has)) :-
+    member(NewPos, [door, window, middle]),
+    NewPos \= Pos.
+
+% 2. Monkey pushes the box if he is at the same place
+move(state(Pos, onfloor, Pos, Has),
+     push(Pos, NewPos),
+     state(NewPos, onfloor, NewPos, Has)) :-
+    member(NewPos, [door, window, middle]),
+    NewPos \= Pos.
+
+% 3. Monkey climbs on the box
+move(state(Pos, onfloor, Pos, Has),
+     climb,
+     state(Pos, onbox, Pos, Has)).
+
+% 4. Monkey climbs down from the box
+move(state(Pos, onbox, Pos, Has),
+     climbdown,
+     state(Pos, onfloor, Pos, Has)).
+
+% 5. Monkey grabs banana if in middle, on box
+move(state(middle, onbox, middle, hasnot),
